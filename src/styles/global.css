@@ -1,0 +1,55 @@
+@import "./variables.css";
+@import "./reset.css";
+@import "./typography.css";
+@import "./animations.css";
+
+/* Estilos de Layout Base */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+}
+
+.main-content {
+  flex: 1;
+  /* El padding bottom para mobile se maneja internamente en componentes que lo requieran o globalmente si es necesario */
+}
+
+/* Ajustes responsivos generales */
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: 80px; /* Espacio crítico para BottomNav en móvil */
+  }
+  
+  .footer {
+    padding-bottom: 100px; /* Extra espacio para que el footer no quede cubierto por el nav */
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+
+/* Glassmorphism helpers */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(27, 67, 50, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Section transitions */
+section {
+  padding: var(--spacing-16) 0;
+}

@@ -1,0 +1,108 @@
+.publish-page {
+  padding: var(--spacing-6) 0 var(--spacing-16);
+  min-height: calc(100vh - 80px);
+}
+
+.publish-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: var(--modal-padding);
+  border-radius: var(--modal-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.wizard-header {
+  text-align: center;
+  margin-bottom: var(--spacing-8);
+}
+
+.wizard-progress {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: center;
+  margin-top: var(--spacing-4);
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-primary-200);
+  transition: var(--transition-normal);
+}
+
+.progress-dot.active {
+  background-color: var(--color-primary-800);
+  width: 32px;
+  border-radius: 6px;
+}
+
+.wizard-step {
+  animation: slideInRight 0.4s ease;
+}
+
+.step-title {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-2);
+  color: var(--color-primary-900);
+}
+
+.step-description {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-8);
+}
+
+.wizard-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-10);
+  gap: var(--spacing-4);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.category-item {
+  padding: var(--spacing-4);
+  border: 2px solid var(--color-primary-200);
+  border-radius: var(--button-radius);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.category-item:hover {
+  background-color: var(--color-primary-100);
+}
+
+.category-item.active {
+  border-color: var(--color-primary-800);
+  background-color: var(--color-primary-200);
+}
+
+.price-suggested {
+  background-color: var(--color-primary-200);
+  padding: var(--spacing-4);
+  border-radius: var(--button-radius);
+  margin-top: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  color: var(--color-primary-900);
+  font-weight: var(--font-weight-medium);
+}
+
+.success-screen {
+  text-align: center;
+  padding: var(--spacing-8) 0;
+}
+
+.success-icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: var(--spacing-4);
+}

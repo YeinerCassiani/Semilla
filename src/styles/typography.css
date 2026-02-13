@@ -1,0 +1,31 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+h1 { font-size: var(--font-size-4xl); margin-bottom: var(--spacing-6); }
+h2 { font-size: var(--font-size-3xl); margin-bottom: var(--spacing-4); }
+h3 { font-size: var(--font-size-2xl); margin-bottom: var(--spacing-3); }
+h4 { font-size: var(--font-size-xl); margin-bottom: var(--spacing-2); }
+
+p {
+  margin-bottom: var(--spacing-4);
+}
+
+span.small {
+  font-size: var(--font-size-sm);
+}
+
+span.xs {
+  font-size: var(--font-size-xs);
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-primary { color: var(--color-primary-800); }
+.text-secondary { color: var(--color-secondary-600); }
+.text-muted { color: var(--color-text-muted); }
+
+.font-bold { font-weight: var(--font-weight-bold); }
+.font-medium { font-weight: var(--font-weight-medium); }
