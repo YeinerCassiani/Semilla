@@ -8,6 +8,7 @@ import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Publish from "./pages/Publish/Publish";
 import Chat from "./pages/Chat/Chat";
 import Education from "./pages/Education/Education";
+import Ranking from "./pages/Ranking/Ranking";
 import Help from "./pages/Help/Help";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
@@ -68,6 +69,15 @@ const AppRouter = () => {
         element={
           <ProtectedRoute>
             <Education />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/ranking"
+        element={
+          <ProtectedRoute>
+            <Ranking />
           </ProtectedRoute>
         }
       />

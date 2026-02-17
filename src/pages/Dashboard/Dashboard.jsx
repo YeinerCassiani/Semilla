@@ -34,24 +34,34 @@ const Dashboard = () => {
             <div className="stats-grid">
               <div
                 className="stat-card animate-fade"
-                style={{ animationDelay: "0.1s" }}
+                style={{
+                  animationDelay: "0.1s",
+                  borderTop: "4px solid var(--nivel-cosecha)",
+                }}
               >
-                <span className="stat-value">{userProducts.length}</span>
-                <span className="stat-label">Productos</span>
+                <span className="stat-label">Nivel Actual</span>
+                <span className="stat-value" style={{ fontSize: "1.4rem" }}>
+                  {user.stats?.nivel || "Semilla"}
+                </span>
+                <span className="stat-label" style={{ fontSize: "0.7rem" }}>
+                  Siguiente: Oro (10 metas)
+                </span>
               </div>
               <div
                 className="stat-card animate-fade"
                 style={{ animationDelay: "0.2s" }}
               >
-                <span className="stat-value">0</span>
-                <span className="stat-label">Mensajes</span>
+                <span className="stat-value">{user.stats?.ventas || 0}</span>
+                <span className="stat-label">Ventas Exitosas</span>
               </div>
               <div
                 className="stat-card animate-fade"
                 style={{ animationDelay: "0.3s" }}
               >
-                <span className="stat-value">0</span>
-                <span className="stat-label">Ventas</span>
+                <span className="stat-value">
+                  ⭐ {user.stats?.rating || "5.0"}
+                </span>
+                <span className="stat-label">Confiabilidad</span>
               </div>
             </div>
 

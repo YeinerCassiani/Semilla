@@ -178,6 +178,87 @@
   font-weight: 600;
 }
 
+/* --- Levels Section --- */
+.levels-explanation {
+  padding: 80px 0;
+  background: white;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.level-card {
+  padding: 30px 20px;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.level-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.level-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.level-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--color-primary-900);
+}
+
+.level-card p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.level-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.level-features li {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: white;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Colores por nivel */
+.level-semilla { background-color: #fdf2f2; }
+.level-semilla li { color: #991b1b; }
+
+.level-brote { background-color: #f0fdf4; }
+.level-brote li { color: #166534; }
+
+.level-cosecha { background-color: #fff7ed; }
+.level-cosecha li { color: #9a3412; }
+
+.level-oro { background-color: #fefce8; border: 2px solid #fde047; }
+.level-oro li { color: #854d0e; }
+
 /* --- Benefits Section --- */
 .benefits {
   padding: 100px 0;

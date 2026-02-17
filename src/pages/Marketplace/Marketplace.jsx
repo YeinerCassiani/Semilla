@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Search, MapPin, SlidersHorizontal } from "lucide-react";
 import { useProducts } from "../../context/ProductsContext";
 import { categories } from "../../data/categories.mock";
+import { users } from "../../data/users.mock";
 import Container from "../../components/layout/Container";
 import Input from "../../components/common/Input/Input";
 import Card from "../../components/common/Card/Card";
@@ -90,10 +91,16 @@ const Marketplace = () => {
                   </div>
                   <div className="product-location">
                     <MapPin size={14} />
-                    <span>
-                      {product.ubicacion.municipio},{" "}
-                      {product.ubicacion.departamento}
-                    </span>
+                    <span>{product.ubicacion.municipio}</span>
+                    {users.find((u) => u.id === product.vendedorId)?.stats
+                      ?.verificado && (
+                      <span
+                        className="verify-badge"
+                        title="Productor Verificado"
+                      >
+                        ✅
+                      </span>
+                    )}
                   </div>
                 </div>
                 <Button fullWidth size="sm" style={{ marginTop: "12px" }}>

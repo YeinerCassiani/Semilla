@@ -98,11 +98,41 @@ const ProductDetail = () => {
                 <img src={seller?.avatar} alt={seller?.nombre} />
               </div>
               <div className="seller-info">
-                <h4>{seller?.nombre}</h4>
-                <p>Productor local de {product.ubicacion.municipio}</p>
+                <h4
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  {seller?.nombre}
+                  {seller?.stats?.verificado && (
+                    <span className="verify-badge">✅</span>
+                  )}
+                </h4>
+                <div style={{ display: "flex", gap: "4px", marginTop: "4px" }}>
+                  <span
+                    className={`badge-pill badge-nivel nivel-${seller?.stats?.nivel?.toLowerCase() || "semilla"}`}
+                    style={{ fontSize: "10px", padding: "2px 8px" }}
+                  >
+                    Nivel {seller?.stats?.nivel || "Semilla"}
+                  </span>
+                  {seller?.stats?.respuestasRapidas && (
+                    <span
+                      className="badge-pill badge-fast"
+                      style={{ fontSize: "10px", padding: "2px 8px" }}
+                    >
+                      ⚡ Rápido
+                    </span>
+                  )}
+                </div>
               </div>
-              <div style={{ marginLeft: "auto" }}>
-                <span className="small text-primary font-bold">⭐ 4.8</span>
+              <div style={{ marginLeft: "auto", textAlign: "right" }}>
+                <div
+                  className="font-bold"
+                  style={{ color: "var(--primary-color)" }}
+                >
+                  ⭐ {seller?.stats?.rating || "4.8"}
+                </div>
+                <div style={{ fontSize: "10px", color: "var(--text-light)" }}>
+                  {seller?.stats?.ventas || "0"} ventas
+                </div>
               </div>
             </div>
 

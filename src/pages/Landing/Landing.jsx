@@ -164,6 +164,67 @@ const Landing = () => {
         </Container>
       </section>
 
+      {/* Levels System Section */}
+      <section className="levels-explanation">
+        <Container>
+          <div className="section-title">
+            <span className="section-badge">Reconocimiento</span>
+            <h2 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
+              Niveles de Confianza 🌱
+            </h2>
+          </div>
+
+          <div className="levels-grid animate-slide-up">
+            <div className="level-card level-semilla">
+              <div className="level-icon">🌱</div>
+              <h4>Nivel Semilla</h4>
+              <p>
+                Productores nuevos que inician su camino en el mercado digital.
+              </p>
+              <ul className="level-features">
+                <li>Perfil verificado</li>
+                <li>Publicación ilimitada</li>
+              </ul>
+            </div>
+            <div className="level-card level-brote">
+              <div className="level-icon">🌿</div>
+              <h4>Nivel Brote</h4>
+              <p>
+                Vendedores con sus primeras ventas exitosas y buenas
+                calificaciones.
+              </p>
+              <ul className="level-features">
+                <li>Badge "Rápido"</li>
+                <li>Visibilidad mejorada</li>
+              </ul>
+            </div>
+            <div className="level-card level-cosecha">
+              <div className="level-icon">🍊</div>
+              <h4>Nivel Cosecha</h4>
+              <p>
+                Productores constantes con alta confiabilidad y volumen de
+                entregas.
+              </p>
+              <ul className="level-features">
+                <li>Destacado en Ranking</li>
+                <li>Sello de Calidad Premium</li>
+              </ul>
+            </div>
+            <div className="level-card level-oro">
+              <div className="level-icon">🏆</div>
+              <h4>Semilla de Oro</h4>
+              <p>
+                Líderes de la comunidad que garantizan la mejor experiencia.
+              </p>
+              <ul className="level-features">
+                <li>Comisión 0% siempre</li>
+                <li>Soporte VIP prioritario</li>
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Benefits Section */}
       <section className="benefits">
         <Container>

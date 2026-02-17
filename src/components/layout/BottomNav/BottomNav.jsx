@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Home, Store, Plus, MessageCircle, BookOpen } from "lucide-react";
+import { Home, Store, Trophy, MessageCircle, BookOpen } from "lucide-react";
 import "./BottomNav.css";
 
 const BottomNav = () => {
@@ -24,10 +24,14 @@ const BottomNav = () => {
         <Store size={24} />
         <span className="bottom-nav-text">Comprar</span>
       </NavLink>
-      <NavLink to="/publish" className="bottom-nav-item">
-        <div className="bottom-nav-center">
-          <Plus size={28} />
-        </div>
+      <NavLink
+        to="/ranking"
+        className={({ isActive }) =>
+          `bottom-nav-item ${isActive ? "active" : ""}`
+        }
+      >
+        <Trophy size={24} />
+        <span className="bottom-nav-text">Ranking</span>
       </NavLink>
       <NavLink
         to="/chat"
