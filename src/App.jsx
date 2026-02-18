@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { useLocation, BrowserRouter } from "react-router-dom";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import BottomNav from "./components/layout/BottomNav/BottomNav";
@@ -8,6 +8,13 @@ import { AuthProvider } from "./context/AuthContext";
 import { ProductsProvider } from "./context/ProductsContext";
 import { ChatProvider } from "./context/ChatContext";
 import { MetricsProvider } from "./context/MetricsContext";
+
+const FooterCondition = () => {
+  const { pathname } = useLocation();
+  const hideFooterRoutes = ["/chat", "/publish", "/login"];
+  if (hideFooterRoutes.some((route) => pathname.includes(route))) return null;
+  return <Footer />;
+};
 
 function App() {
   return (
@@ -21,7 +28,7 @@ function App() {
                 <main className="main-content">
                   <AppRouter />
                 </main>
-                <Footer />
+                <FooterCondition />
                 <BottomNav />
               </div>
             </MetricsProvider>

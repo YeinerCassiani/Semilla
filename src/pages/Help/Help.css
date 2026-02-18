@@ -69,3 +69,73 @@
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
+
+/* Security and Terms Styles */
+.security-content, .terms-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.security-section, .terms-intro {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0;
+}
+
+.security-icon-box, .terms-icon-box {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-primary-200);
+  color: var(--color-primary-800);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.security-grid, .terms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.security-card, .terms-section-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--color-primary-100);
+  transition: transform 0.3s;
+}
+
+.security-card:hover, .terms-section-card:hover {
+  transform: translateY(-5px);
+}
+
+.security-card h3, .terms-section-card h3 {
+  margin: 15px 0 10px;
+  color: var(--color-primary-900);
+}
+
+.security-alert {
+  display: flex;
+  gap: 15px;
+  background-color: #fffbeb;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #fde68a;
+  align-items: center;
+}
+
+.security-alert h4 {
+  color: #92400e;
+  margin-bottom: 4px;
+}
+
+.terms-footer-info {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}

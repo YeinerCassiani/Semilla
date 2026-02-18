@@ -6,12 +6,19 @@ import {
   Image as ImageIcon,
   Smile,
   MessageCircle,
+  Handshake,
+  ShieldCheck,
+  AlertCircle,
+  MapPin,
+  UserCheck,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useChat } from "../../context/ChatContext";
+import { useProducts } from "../../context/ProductsContext";
 import { useMetrics } from "../../context/MetricsContext";
 import Container from "../../components/layout/Container";
 import Button from "../../components/common/Button/Button";
+import Modal from "../../components/common/Modal/Modal";
 import "./Chat.css";
 
 const QUICK_REPLIES = [
@@ -30,19 +37,42 @@ const Chat = () => {
     loading,
     selectConversation,
     sendMessage,
+    confirmDeal,
   } = useChat();
+  const { products } = useProducts();
   const { trackAction } = useMetrics();
 
   const [inputText, setInputText] = useState("");
   const [showMobileList, setShowMobileList] = useState(true);
-  const messagesEndRef = useRef(null);
+  const [showDealModal, setShowDealModal] = useState(false);
+  const messagesContainerRef = useRef(null);
+
+  const handleConfirmDeal = async () => {
+    const product = products.find(
+      (p) => p.id === activeConversation.productoId,
+    );
+    if (product) {
+      await confirmDeal(product);
+      setShowDealModal(false);
+      trackAction("CONFIRM_DEAL");
+    }
+  };
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      const container = messagesContainerRef.current;
+      // Scroll estrictamente dentro del contenedor
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Usamos un pequeño timeout para asegurar que el DOM se haya actualizado con el nuevo mensaje
+    const timer = setTimeout(scrollToBottom, 50);
+    return () => clearTimeout(timer);
   }, [messages]);
 
   const handleSend = (e) => {
@@ -134,25 +164,39 @@ const Chat = () => {
                 </h3>
                 <span className="small text-muted">En línea</span>
               </div>
+
+              {user.id === activeConversation.vendedorId && (
+                <div style={{ marginLeft: "auto" }}>
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    icon={Handshake}
+                    onClick={() => setShowDealModal(true)}
+                  >
+                    Confirmar Trato
+                  </Button>
+                </div>
+              )}
             </header>
 
-            <div className="messages-container">
+            <div className="messages-container" ref={messagesContainerRef}>
               {loading ? (
                 <div className="text-center">Cargando mensajes...</div>
               ) : (
                 messages.map((msg, idx) => (
                   <div
                     key={msg.id || idx}
-                    className={`message-bubble ${msg.remitenteId === user.id ? "sent" : "received"}`}
+                    className={`message-bubble ${msg.tipo === "sistema" ? "system" : msg.remitenteId === user.id ? "sent" : "received"}`}
                   >
                     {msg.texto}
-                    <span className="message-time">
-                      {formatTime(msg.fecha)}
-                    </span>
+                    {msg.tipo !== "sistema" && (
+                      <span className="message-time">
+                        {formatTime(msg.fecha)}
+                      </span>
+                    )}
                   </div>
                 ))
               )}
-              <div ref={messagesEndRef} />
             </div>
 
             <div className="quick-replies">
@@ -208,6 +252,82 @@ const Chat = () => {
           </div>
         )}
       </main>
+
+      {/* Modal de Seguridad para confirmar trato */}
+      <Modal
+        isOpen={showDealModal}
+        onClose={() => setShowDealModal(false)}
+        title="Finalizar Trato Seguro"
+        footer={
+          <div style={{ display: "flex", gap: "10px", width: "100%" }}>
+            <Button
+              variant="outline"
+              fullWidth
+              onClick={() => setShowDealModal(false)}
+            >
+              Cancelar
+            </Button>
+            <Button fullWidth onClick={handleConfirmDeal}>
+              Confirmar Venta
+            </Button>
+          </div>
+        }
+      >
+        <div className="security-modal-content">
+          <p>
+            Al confirmar, el producto será marcado como vendido. Por favor,
+            sigan estas recomendaciones de seguridad:
+          </p>
+
+          <div className="security-guidelines">
+            <h4>
+              <ShieldCheck size={20} className="text-primary" /> Garantía de
+              Seguridad
+            </h4>
+            <ul className="guidelines-list">
+              <li className="guideline-item">
+                <MapPin size={20} color="#6b7280" />
+                <div>
+                  <strong>Lugar de Entrega:</strong>
+                  Acuerden siempre un lugar público y concurrido para el
+                  intercambio.
+                </div>
+              </li>
+              <li className="guideline-item">
+                <UserCheck size={20} color="#6b7280" />
+                <div>
+                  <strong>Verificación:</strong>
+                  Confirmen la identidad de la persona comparando con la foto de
+                  perfil antes de entregar/pagar.
+                </div>
+              </li>
+              <li className="guideline-item">
+                <AlertCircle size={20} color="#f59e0b" />
+                <div>
+                  <strong>Pago Seguro:</strong>
+                  Recomendamos usar transferencias electrónicas
+                  (Nequi/Daviplata) en el momento exacto de la entrega.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="security-code-box">
+            <span>Código de Seguridad para el Intercambio</span>
+            <strong>{Math.floor(1000 + Math.random() * 9000)}</strong>
+            <p
+              style={{
+                fontSize: "11px",
+                color: "var(--text-muted)",
+                marginTop: "8px",
+              }}
+            >
+              Muestren este código al encontrarse para validar que ambos son
+              usuarios de Semilla.
+            </p>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

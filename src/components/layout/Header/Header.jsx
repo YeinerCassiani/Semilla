@@ -33,29 +33,31 @@ const Header = () => {
             />
           </Link>
 
-          <nav className="header-nav-pill">
-            <Link
-              to="/marketplace"
-              className={`nav-pill-item ${isActive("/marketplace") ? "active" : ""}`}
-            >
-              <ShoppingBag size={16} />
-              <span>Mercado</span>
-            </Link>
-            <Link
-              to="/education"
-              className={`nav-pill-item ${isActive("/education") ? "active" : ""}`}
-            >
-              <BookOpen size={16} />
-              <span>Aprende</span>
-            </Link>
-            <Link
-              to="/help"
-              className={`nav-pill-item ${isActive("/help") ? "active" : ""}`}
-            >
-              <HelpCircle size={16} />
-              <span>Ayuda</span>
-            </Link>
-          </nav>
+          {isAuthenticated && (
+            <nav className="header-nav-pill">
+              <Link
+                to="/marketplace"
+                className={`nav-pill-item ${isActive("/marketplace") ? "active" : ""}`}
+              >
+                <ShoppingBag size={16} />
+                <span>Mercado</span>
+              </Link>
+              <Link
+                to="/education"
+                className={`nav-pill-item ${isActive("/education") ? "active" : ""}`}
+              >
+                <BookOpen size={16} />
+                <span>Aprende</span>
+              </Link>
+              <Link
+                to="/help"
+                className={`nav-pill-item ${isActive("/help") ? "active" : ""}`}
+              >
+                <HelpCircle size={16} />
+                <span>Ayuda</span>
+              </Link>
+            </nav>
+          )}
 
           <div className="header-actions">
             {isAuthenticated ? (

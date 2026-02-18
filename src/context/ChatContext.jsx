@@ -1,11 +1,12 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import chatService from "../services/chat.service";
+import productsService from "../services/products.service";
 import { useAuth } from "./AuthContext";
 
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
-  const { user } = useAuth();
+  const { user, updateProfile } = useAuth();
   const [conversations, setConversations] = useState([]);
   const [activeConversation, setActiveConversation] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -83,6 +84,42 @@ export const ChatProvider = ({ children }) => {
     return conv;
   };
 
+  const confirmDeal = async (productData) => {
+    if (!activeConversation || !user) return;
+
+    // 1. Marcar producto como vendido
+    const updatedProduct = { ...productData, estado: "vendido" };
+    await productsService.update(updatedProduct);
+
+    // 2. Actualizar estadísticas del vendedor (si es el usuario actual)
+    if (user.id === activeConversation.vendedorId) {
+      const currentStats = user.stats || {
+        ventas: 0,
+        rating: 5.0,
+        nivel: "Semilla",
+      };
+      updateProfile({
+        stats: {
+          ...currentStats,
+          ventas: (currentStats.ventas || 0) + 1,
+        },
+      });
+    }
+
+    // 3. Enviar mensaje de sistema en el chat
+    const systemMsg = {
+      conversacionId: activeConversation.id,
+      remitenteId: "system",
+      texto: `🤝 ¡TRATO CERRADO! El producto "${productData.nombre}" ha sido marcado como vendido. Gracias por confiar en Semilla.`,
+      tipo: "sistema",
+    };
+    const newMsg = await chatService.sendMessage(systemMsg);
+    setMessages((prev) => [...prev, newMsg]);
+    refreshConversations();
+
+    return true;
+  };
+
   const value = {
     conversations,
     activeConversation,
@@ -92,6 +129,7 @@ export const ChatProvider = ({ children }) => {
     selectConversation,
     sendMessage,
     startNewConversation,
+    confirmDeal,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;

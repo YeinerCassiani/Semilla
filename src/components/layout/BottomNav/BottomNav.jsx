@@ -1,9 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Home, Store, Trophy, MessageCircle, BookOpen } from "lucide-react";
+import { useAuth } from "../../../context/AuthContext";
 import "./BottomNav.css";
 
 const BottomNav = () => {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) return null;
+
   return (
     <nav className="bottom-nav">
       <NavLink

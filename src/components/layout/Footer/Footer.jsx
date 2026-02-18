@@ -71,13 +71,13 @@ const Footer = () => {
                 <Link to="/help">Centro de Ayuda</Link>
               </li>
               <li>
-                <a href="#">Preguntas Frecuentes</a>
+                <Link to="/faq">Preguntas Frecuentes</Link>
               </li>
               <li>
-                <a href="#">Seguridad en Pagos</a>
+                <Link to="/security">Seguridad en Pagos</Link>
               </li>
               <li>
-                <a href="#">Términos de Uso</a>
+                <Link to="/terms">Términos de Uso</Link>
               </li>
             </ul>
           </div>
@@ -90,7 +90,7 @@ const Footer = () => {
                 <Mail size={16} /> <span>contacto@semilla.co</span>
               </li>
               <li>
-                <Phone size={16} /> <span>+57 (300) 123 4567</span>
+                <Phone size={16} /> <span>+57 (300) 830 2655</span>
               </li>
               <li>
                 <MapPin size={16} /> <span>Santa Marta, Colombia</span>

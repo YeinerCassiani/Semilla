@@ -77,6 +77,7 @@ const Auth = () => {
               icon={User}
               value={formData.nombre}
               onChange={handleChange}
+              style={{ paddingTop: "15px" }}
               required
             />
 
@@ -84,10 +85,11 @@ const Auth = () => {
               label="Tu número de teléfono"
               name="telefono"
               type="tel"
-              placeholder="Ej: 300 123 4567"
+              placeholder="Ej: 300 830 2655"
               icon={Phone}
               value={formData.telefono}
               onChange={handleChange}
+              style={{ paddingTop: "15px" }}
               required
             />
 

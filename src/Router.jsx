@@ -10,6 +10,8 @@ import Chat from "./pages/Chat/Chat";
 import Education from "./pages/Education/Education";
 import Ranking from "./pages/Ranking/Ranking";
 import Help from "./pages/Help/Help";
+import Security from "./pages/Help/Security";
+import Terms from "./pages/Help/Terms";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 const AppRouter = () => {
@@ -87,6 +89,33 @@ const AppRouter = () => {
         element={
           <ProtectedRoute>
             <Help />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/faq"
+        element={
+          <ProtectedRoute>
+            <Help />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/security"
+        element={
+          <ProtectedRoute>
+            <Security />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/terms"
+        element={
+          <ProtectedRoute>
+            <Terms />
           </ProtectedRoute>
         }
       />

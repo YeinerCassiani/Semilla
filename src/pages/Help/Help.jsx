@@ -89,7 +89,10 @@ const Help = () => {
             Tranquilo, podemos hablar por WhatsApp y te ayudamos con lo que
             necesites.
           </p>
-          <a href="#" className="whatsapp-button">
+          <a
+            href="https://api.whatsapp.com/send?phone=573008302655&text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20soporte"
+            className="whatsapp-button"
+          >
             <MessageCircle size={24} />
             Escribir a Soporte Semilla
           </a>

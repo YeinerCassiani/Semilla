@@ -9,9 +9,14 @@ import Card from "../../components/common/Card/Card";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { getUserProducts, loading } = useProducts();
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   const userProducts = user.rol === "productor" ? getUserProducts(user.id) : [];
 
@@ -21,12 +26,34 @@ const Dashboard = () => {
     <div className="dashboard-page">
       <Container>
         <header className="dashboard-header animate-slide-up">
-          <h1>Hola, {user.nombre.split(" ")[0]} 👋</h1>
-          <p>
-            {user.rol === "productor"
-              ? "Tus cosechas en un solo lugar"
-              : "Bienvenido a tu mercado directo"}
-          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              width: "100%",
+            }}
+          >
+            <div>
+              <h1>Hola, {user.nombre.split(" ")[0]} 👋</h1>
+              <p>
+                {user.rol === "productor"
+                  ? "Tus cosechas en un solo lugar"
+                  : "Bienvenido a tu mercado directo"}
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleLogout}
+              style={{
+                color: "var(--color-error)",
+                borderColor: "var(--color-error)",
+              }}
+            >
+              Cerrar Sesión
+            </Button>
+          </div>
         </header>
 
         {user.rol === "productor" ? (
