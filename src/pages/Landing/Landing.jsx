@@ -172,6 +172,11 @@ const Landing = () => {
             <h2 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
               Niveles de Confianza 🌱
             </h2>
+            <p>
+              A medida que vendes y cumples con tus compromisos, tu perfil sube
+              de nivel, dándote más visibilidad y beneficios. Todos los niveles
+              tienen acceso a soporte.
+            </p>
           </div>
 
           <div className="levels-grid animate-slide-up">
