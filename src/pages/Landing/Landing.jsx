@@ -343,6 +343,39 @@ const Landing = () => {
         </Container>
       </section>
 
+      {/* Partners Section */}
+      <section className="partners-section">
+        <div className="partners-title">Aliados que creen en el campo</div>
+        <div className="marquee">
+          <div className="marquee-content">
+            {[
+              { n: "MinAgricultura", i: "🇨🇴" },
+              { n: "SENA", i: "🍊" },
+              { n: "FAO", i: "🇺🇳" },
+              { n: "ADR", i: "🚜" },
+              { n: "Finagro", i: "💰" },
+              { n: "SAC", i: "🌾" },
+              { n: "ICA", i: "🔬" },
+              { n: "Alcaldía Bogotá", i: "🏙️" },
+              // Duplicate once for seamless loop
+              { n: "MinAgricultura", i: "🇨🇴" },
+              { n: "SENA", i: "🍊" },
+              { n: "FAO", i: "🇺🇳" },
+              { n: "ADR", i: "🚜" },
+              { n: "Finagro", i: "💰" },
+              { n: "SAC", i: "🌾" },
+              { n: "ICA", i: "🔬" },
+              { n: "Alcaldía Bogotá", i: "🏙️" },
+            ].map((p, i) => (
+              <div key={i} className="partner-logo">
+                <div className="logo-circle">{p.i}</div>
+                <span>{p.n}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Final */}
       <section className="cta-section">
         <Container>
